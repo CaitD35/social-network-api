@@ -10,7 +10,7 @@ const {
   addFriend,
   deleteFriend,
 }
-= require('../../controllers/user-controller');
+= require('../../controllers/userController');
 
 // Set up GET all and POST at /api/users
 router.route('/').get(getAllUsers).post(createUser);

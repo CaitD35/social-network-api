@@ -8,7 +8,8 @@ const {
   deleteThought,
   addReaction,
   deleteReaction,
-} = require('../../controllers/thought-controller');
+  
+} = require('../../controllers/thoughtController');
 // Set up GET all and POST at /api/thoughts
 router.route('/').get(getAllThoughts).post(createThought);
 // Set up GET one, PUT, and DELETE at /api/thoughts/:id
