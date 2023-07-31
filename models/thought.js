@@ -1,8 +1,6 @@
 const { Schema, model } = require('mongoose');
+const Reaction = require('./Reaction');
 
-function dateValidator(date) {
-    return date === new Date().toLocaleDateString();
-} 
 
 const ThoughtSchema = new Schema(
     {
@@ -15,17 +13,39 @@ const ThoughtSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            validate: [dateValidator, 'Please enter a valid date'],
+            get: formatDate,
         },
         username: {
             type: String,
             required: true,
         },
-        reactions: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Reaction',
-            } 
-        ],
+        reactions: [Reaction],
+
     },
+    {
+        toJSON: {
+            getters: true,
+            virtuals: true,
+        },
+        id: false,
+    }
 );
+
+thoughtSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length;
+} );
+
+function formatDate(createdAt) {
+    return createdAt.toLocalDateString("en-US",{
+    day: "2-digit",
+    year: "numeric",
+    month: "long",
+    minutes: "2-digit",
+    hours: "2-digit",
+    
+});
+}
+
+const Thought = model('Thought', ThoughtSchema);
+
+module.exports = Thought;

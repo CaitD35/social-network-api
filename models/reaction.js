@@ -1,6 +1,5 @@
 const { Schema, types } = require('mongoose');
-const reactionSchema = require('./Reaction');
-const dayjs = require('dayjs');
+
 
 const reactionSchema = new Schema(
     {
@@ -10,22 +9,37 @@ const reactionSchema = new Schema(
         },
         reactionBody: {
             type: String,
-            required: 'Please enter a reaction!',
-            maxlength: 280
+            required: true,
+            maxlength: 280,
+            minlength: 10,
         },  
         username: {
             type: String,
-            required: 'Please enter a username!'
+            required: true,
         },
         createdAt: {
             type: Date,
             default: Date.now,
-            get: (createdAtVal) => dayjs(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
+            get: formatDate
         }
     },
     {
         toJSON: {
             getters: true
-        }
+        },
+        id: false
     }
 );
+
+function formatDate(createdAt) {
+    return createdAt.toLocalDateString("en-US",{
+    day: "2-digit",
+    year: "numeric",
+    month: "long",
+    minutes: "2-digit",
+    hours: "2-digit",
+    
+});
+}   
+
+module.exports = reactionSchema;
