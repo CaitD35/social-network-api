@@ -16,7 +16,6 @@ To set up the application, follow these steps:
 3. Start the server:
    npm start
 
-The server will run on localhost at port 3001.
 
 ## Usage
 
@@ -38,6 +37,12 @@ Express: The web framework used for setting up the server and handling API route
 
 ## Demonstrations
 
-video demonstration
+Example photo from the upenn module:
+
+![examplefromModule.](./images/18-nosql-homework-demo-01.jpeg)
+![examplefromModule2.](./images/18-nosql-homework-demo-03.jpeg)
+![examplefromModule3.](./images/18-nosql-homework-demo-04.jpeg)
+
+
 
 Feel free to explore and experiment with the API to unleash the full potential of your social media network. If you have any questions or suggestions, don't hesitate to reach out. Happy social networking!
